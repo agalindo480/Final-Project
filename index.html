@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1280, initial-scale=1" />
+    <title>Espresso Time | Coffee & Espresso Martinis</title>
+    <meta name="description"
+        content="Espresso Time is Gilbert’s late-night coffee and espresso martini lounge—built for study sessions, meetings, and after-hours vibes." />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <!-- Skip Links (required by you; great for accessibility) -->
+    <nav class="skip-links" aria-label="Skip links">
+        <a href="#about">Skip to About</a>
+        <a href="#drinks">Skip to Drinks</a>
+        <a href="#game">Skip to Game</a>
+        <a href="#contact">Skip to Contact</a>
+    </nav>
+
+    <header class="site-header" id="top">
+        <div class="container header-inner">
+            <a class="brand" href="#top" aria-label="Espresso Time Home">
+                <span class="brand-mark" aria-hidden="true">☕</span>
+                <span class="brand-name">Espresso Time</span>
+            </a>
+
+            <nav class="site-nav" aria-label="Primary">
+                <a href="#about">About</a>
+                <a href="#drinks">Drinks</a>
+                <a href="#game">Game</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <div class="header-controls">
+                <button id="themeToggle" class="btn btn-ghost" type="button" aria-pressed="false">
+                    Dark Mode: Off
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+        <!-- HERO -->
+        <section class="hero" aria-label="Hero">
+            <div class="container hero-inner">
+                <div class="hero-copy">
+                    <h1>Espresso with Meaning</h1>
+                    <p>
+                        Gilbert’s late-night coffee lounge where study sessions meet espresso martinis.
+                        Built for focus by day—and elevated vibes by night.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="btn" href="#drinks">View Drinks</a>
+                        <a class="btn btn-ghost" href="#contact">Contact Us</a>
+                    </div>
+
+                    <ul class="hero-highlights" aria-label="Highlights">
+                        <li>Premium espresso</li>
+                        <li>Crafted martinis</li>
+                        <li>Work-ready seating</li>
+                        <li>After-hours lounge</li>
+                    </ul>
+                </div>
+
+                <div class="hero-media" role="img" aria-label="Coffee lounge hero image">
+                    <!-- Uses CSS background image: hero1.jpg -->
+                    <div class="hero-media-overlay" aria-hidden="true"></div>
+                    <p class="hero-media-note">
+                        Place your hero image in <strong>assets/hero1.jpg</strong>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section class="section" id="about" aria-label="About Espresso Time">
+            <div class="container two-col">
+                <div>
+                    <h2>About Espresso Time</h2>
+                    <p>
+                        Espresso Time is Gilbert’s late-night coffee and cocktail destination designed for
+                        thinkers, creators, and professionals. We specialize in handcrafted espresso martinis
+                        made with premium espresso and top-shelf spirits—creating the perfect balance between
+                        productivity and unwind.
+                    </p>
+                    <p>
+                        Whether you’re finishing a project, meeting with clients, or catching up with friends,
+                        our space was built for focus during the day and elevated vibes at night. At Espresso
+                        Time, every sip has purpose.
+                    </p>
+
+                    <h3>What we offer</h3>
+                    <ul class="bullets">
+                        <li>Specialty espresso martinis crafted fresh</li>
+                        <li>Premium coffee and espresso bar</li>
+                        <li>Study-friendly and business-ready workspace</li>
+                        <li>Evening social lounge atmosphere</li>
+                        <li>Free Wi-Fi and community tables</li>
+                    </ul>
+                </div>
+
+                <aside class="card about-card" aria-label="Location card">
+                    <h3>Visit us</h3>
+                    <p><strong>Location:</strong> Gilbert, AZ</p>
+                    <p><strong>Best hours:</strong> Study by day, sip by night.</p>
+                    <p class="muted">
+                        Tip: Add a second image for this card at <strong>assets/about.jpg</strong> (optional).
+                    </p>
+                </aside>
+            </div>
+        </section>
+
+        <!-- DRINKS / PRODUCT DISPLAY -->
+        <section class="section" id="drinks" aria-label="Featured Espresso Martinis">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Featured Espresso Martinis</h2>
+                    <p class="muted">
+                        Choose a drink to view details. Only one drink displays at a time.
+                    </p>
+                </div>
+
+                <div class="product-layout">
+                    <article class="card product-card" aria-live="polite">
+                        <div class="product-image-wrap">
+                            <img id="productImage" src="assets/photo1.jpg" alt="Midnight Classic espresso martini"
+                                width="560" height="360" />
+                        </div>
+
+                        <div class="product-info">
+                            <h3 id="productName">Midnight Classic</h3>
+                            <p id="productDesc">
+                                A smooth blend of premium vodka, freshly pulled espresso, and coffee liqueur.
+                                Bold, balanced, and timeless—our signature espresso martini.
+                            </p>
+
+                            <div class="product-meta">
+                                <span class="pill">Fresh espresso</span>
+                                <span class="pill">Top-shelf spirits</span>
+                                <span class="pill">Night vibe</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="product-controls" role="group" aria-label="Choose a drink">
+                        <button class="btn btn-tab" type="button" data-product="0" aria-current="true">Midnight
+                            Classic</button>
+                        <button class="btn btn-tab" type="button" data-product="1">Velvet Mocha Martini</button>
+                        <button class="btn btn-tab" type="button" data-product="2">Caramel Cold Brew Kick</button>
+                    </div>
+
+                    <p class="muted small">
+                        Place your drink images in <strong>assets/photo1.jpg</strong>,
+                        <strong>assets/photo2.jpg</strong>, <strong>assets/photo3.jpg</strong>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- GAME -->
+        <section class="section" id="game" aria-label="Guess the Hour Game">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Guess the Hour</h2>
+                    <p class="muted">
+                        Enter a number from 1 to 10. If your guess matches the “hour,” you win a free drink.
+                    </p>
+                </div>
+
+                <div class="card game-card">
+                    <form id="gameForm" class="game-form" novalidate>
+                        <label for="guessInput"><strong>Your guess (1–10)</strong></label>
+                        <div class="game-row">
+                            <input id="guessInput" name="guess" type="number" min="1" max="10" inputmode="numeric" />
+                            <button class="btn" type="submit">Play</button>
+                        </div>
+                        <p id="guessError" class="error" aria-live="polite"></p>
+                    </form>
+
+                    <div class="game-results" aria-live="polite">
+                        <p><strong>Your guess:</strong> <span id="userGuessOut">—</span></p>
+                        <p><strong>The hour was:</strong> <span id="randomOut">—</span></p>
+                        <p id="resultMessage" class="result-message">Make a guess to start the game.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="section" id="contact" aria-label="Contact Espresso Time">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Contact</h2>
+                    <p class="muted">
+                        Send us a message. Choose how you’d like to be contacted, and we’ll follow up.
+                    </p>
+                </div>
+
+                <div class="contact-grid">
+                    <form id="contactForm" class="card form-card" novalidate>
+                        <div class="field">
+                            <label for="fullName">Full Name <span aria-hidden="true">*</span></label>
+                            <input id="fullName" name="fullName" type="text" autocomplete="name" />
+                            <p class="error" id="nameError" aria-live="polite"></p>
+                        </div>
+
+                        <fieldset class="field">
+                            <legend>Preferred Contact Method <span aria-hidden="true">*</span></legend>
+                            <div class="radio-row">
+                                <label>
+                                    <input type="radio" name="contactPreference" value="phone" />
+                                    Phone
+                                </label>
+                                <label>
+                                    <input type="radio" name="contactPreference" value="email" />
+                                    Email
+                                </label>
+                            </div>
+                            <p class="error" id="prefError" aria-live="polite"></p>
+                        </fieldset>
+
+                        <div class="field">
+                            <label for="phone">Phone</label>
+                            <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(555) 555-5555" />
+                            <p class="error" id="phoneError" aria-live="polite"></p>
+                        </div>
+
+                        <div class="field">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" autocomplete="email"
+                                placeholder="name@example.com" />
+                            <p class="error" id="emailError" aria-live="polite"></p>
+                        </div>
+
+                        <div class="field">
+                            <label for="comments">Comments <span aria-hidden="true">*</span></label>
+                            <textarea id="comments" name="comments" rows="5"></textarea>
+                            <p class="error" id="commentsError" aria-live="polite"></p>
+                        </div>
+
+                        <button class="btn" type="submit">Submit</button>
+                        <p class="muted small">Fields marked with * are required.</p>
+                    </form>
+
+                    <aside class="card thankyou-card" aria-label="Submission status">
+                        <h3>We’ll get back to you</h3>
+                        <p class="muted">
+                            On successful submission, you’ll see a thank-you message here with the info you sent.
+                        </p>
+                        <div id="thankYou" class="thankyou" aria-live="polite">
+                            <p class="muted">No submission yet.</p>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" aria-label="Footer">
+        <div class="container footer-inner">
+            <p><strong>Espresso Time</strong> — Gilbert, AZ</p>
+            <p>
+                Email: <a href="mailto:contactgalindo@gmail.com">contactgalindo@gmail.com</a>
+            </p>
+            <p class="muted">
+                Socials: <span aria-hidden="true">[Instagram]</span> <span aria-hidden="true">[TikTok]</span> <span
+                    aria-hidden="true">[X]</span>
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>
