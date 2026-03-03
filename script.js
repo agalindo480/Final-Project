@@ -1,38 +1,25 @@
 "use strict";
 
-/* Espresso Time - Final Project JS
-   Requirements met:
-   - Strict mode globally
-   - No inline handlers (events added via JS)
-   - Light/Dark mode toggle (no persistence by request)
-   - Product display (one at a time)
-   - Game play (1-10 random compare)
-   - Contact form validation w/ regex + customer object + thank you message
-*/
-
 document.addEventListener("DOMContentLoaded", function () {
-    // ---------- Smooth scroll enhancement + focus management ----------
-    // (CSS already handles smooth scrolling, but this ensures keyboard focus after jump)
+    // Smooth scroll focus
     const navLinks = document.querySelectorAll('a[href^="#"]');
     navLinks.forEach((link) => {
-        link.addEventListener("click", function (e) {
+        link.addEventListener("click", function () {
             const targetId = link.getAttribute("href");
             if (!targetId || targetId === "#") return;
 
             const targetEl = document.querySelector(targetId);
             if (!targetEl) return;
 
-            // Let default anchor happen, then move focus for accessibility
             setTimeout(() => {
                 targetEl.setAttribute("tabindex", "-1");
                 targetEl.focus({ preventScroll: true });
-                // Remove tabindex later so it doesn't remain in tab order
                 setTimeout(() => targetEl.removeAttribute("tabindex"), 250);
             }, 0);
         });
     });
 
-    // ---------- Theme Toggle ----------
+    // Theme toggle
     const themeToggleBtn = document.getElementById("themeToggle");
     let isDark = false;
 
@@ -49,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateThemeUI();
 
-    // ---------- Product Display ----------
+    // Product display
     const products = [
         {
             name: "Midnight Classic",
@@ -96,15 +83,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     productButtons.forEach((btn) => {
         btn.addEventListener("click", function () {
-            const index = Number(btn.dataset.product);
-            showProduct(index);
+            showProduct(Number(btn.dataset.product));
         });
     });
 
-    // Default product on load
     showProduct(0);
 
-    // ---------- Game ----------
+    // Game
     const gameForm = document.getElementById("gameForm");
     const guessInput = document.getElementById("guessInput");
     const guessError = document.getElementById("guessError");
@@ -138,18 +123,16 @@ document.addEventListener("DOMContentLoaded", function () {
         userGuessOut.textContent = String(guessNum);
         randomOut.textContent = String(randomNum);
 
-        if (guessNum === randomNum) {
-            resultMessage.textContent = "You win! Your next espresso martini is on us. 🎉";
-        } else {
-            resultMessage.textContent = "Not this hour—try again for a free drink!";
-        }
+        resultMessage.textContent =
+            guessNum === randomNum
+                ? "You win! Your next espresso martini is on us. 🎉"
+                : "Not this hour—try again for a free drink!";
 
-        // Optional: clear the input after each play
         guessInput.value = "";
         guessInput.focus();
     });
 
-    // ---------- Contact Form Validation ----------
+    // Contact form
     const contactForm = document.getElementById("contactForm");
     const thankYou = document.getElementById("thankYou");
 
@@ -164,9 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const emailError = document.getElementById("emailError");
     const commentsError = document.getElementById("commentsError");
 
-    // Regex requirements (reasonable for class projects)
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    // Accepts: 5555555555, (555) 555-5555, 555-555-5555, 555 555 5555
     const phoneRegex = /^(\+1\s?)?(\(?\d{3}\)?[\s-]?)\d{3}[\s-]?\d{4}$/;
 
     function clearErrors() {
@@ -182,12 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return checked ? checked.value : "";
     }
 
-    function setError(el, msg) {
-        el.textContent = msg;
-    }
-
     function buildThankYouMessage(customer) {
-        // Build a safe, readable message without injecting HTML from user
         const wrap = document.createElement("div");
 
         const title = document.createElement("p");
@@ -207,6 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
         wrap.appendChild(detailsTitle);
 
         const list = document.createElement("ul");
+
         const liPref = document.createElement("li");
         liPref.textContent = `Preferred contact: ${customer.contactPreference}`;
         list.appendChild(liPref);
@@ -224,7 +201,6 @@ document.addEventListener("DOMContentLoaded", function () {
         list.appendChild(liComments);
 
         wrap.appendChild(list);
-
         return wrap;
     }
 
@@ -236,52 +212,47 @@ document.addEventListener("DOMContentLoaded", function () {
         const phone = phoneEl.value.trim();
         const email = emailEl.value.trim();
         const comments = commentsEl.value.trim();
-        const preference = getContactPreference(); // "phone" or "email"
+        const preference = getContactPreference();
 
         let isValid = true;
 
-        // Required: name
         if (!fullName) {
-            setError(nameError, "Please enter your full name.");
+            nameError.textContent = "Please enter your full name.";
             isValid = false;
         }
 
-        // Required: comments
         if (!comments) {
-            setError(commentsError, "Please enter a comment so we know how to help.");
+            commentsError.textContent = "Please enter a comment so we know how to help.";
             isValid = false;
         }
 
-        // Required: preference
         if (!preference) {
-            setError(prefError, "Please choose phone or email as your preferred contact method.");
+            prefError.textContent = "Please choose phone or email as your preferred contact method.";
             isValid = false;
         }
 
-        // Conditional required: phone or email based on preference
         if (preference === "phone") {
             if (!phone) {
-                setError(phoneError, "Phone is required when you choose phone contact.");
+                phoneError.textContent = "Phone is required when you choose phone contact.";
                 isValid = false;
             } else if (!phoneRegex.test(phone)) {
-                setError(phoneError, "Please enter a valid phone number (ex: 555-555-5555).");
+                phoneError.textContent = "Please enter a valid phone number (ex: 555-555-5555).";
                 isValid = false;
             }
         }
 
         if (preference === "email") {
             if (!email) {
-                setError(emailError, "Email is required when you choose email contact.");
+                emailError.textContent = "Email is required when you choose email contact.";
                 isValid = false;
             } else if (!emailRegex.test(email)) {
-                setError(emailError, "Please enter a valid email (ex: name@example.com).");
+                emailError.textContent = "Please enter a valid email (ex: name@example.com).";
                 isValid = false;
             }
         }
 
         if (!isValid) return;
 
-        // Create the customer object from valid inputs (rubric requirement)
         const customer = {
             fullName: fullName,
             contactPreference: preference,
@@ -291,11 +262,9 @@ document.addEventListener("DOMContentLoaded", function () {
             submittedAt: new Date().toISOString()
         };
 
-        // Show thank-you message using values pulled from the object
         thankYou.innerHTML = "";
         thankYou.appendChild(buildThankYouMessage(customer));
 
-        // Reset the form after successful submission (rubric requirement)
         contactForm.reset();
         fullNameEl.focus();
     });
